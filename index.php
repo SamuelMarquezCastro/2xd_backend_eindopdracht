@@ -34,8 +34,100 @@
     </section>
 
     <main>
-    
-    </main>
+    <section class="collection">
+        <h2>Collecties</h2>
 
+        <div class="collection-category">
+            <h3>Slaapkamer</h3>
+
+
+            <div class="category-items">
+                <article class="item">
+                    <img src="" alt="">
+                    <p> item 1</p>
+                </article>
+
+                <article class="item">
+                    <img src="" alt="">
+                    <p> item 2</p>
+                </article>
+
+                <article class="item">
+                    <img src="" alt="">
+                    <p> item 3</p>
+                </article>
+            </div>
+        </div>
+
+        
+        <div class="collection-category">
+            <h3>Woonkamer</h3>
+
+            <div class="category-items">
+                <article class="item">
+                    <img src="" alt="">
+                    <p>item 1</p>
+                </article>
+
+                <article class="item">
+                    <img src="" alt="">
+                    <p>item 2</p>
+                </article>
+
+                <article class="item">
+                    <img src="" alt="">
+                    <p>item 3</p>
+                </article>
+            </div>
+        </div>
+
+       
+        <div class="collection-category">
+            <h3>Keuken & eetkamer</h3>
+            
+
+            <div class="category-items">
+                <article class="item">
+                    <img src="" alt="">
+                    <p>item 1</p>
+                </article>
+
+                <article class="item">
+                    <img src="" alt="">
+                    <p>item 2</p>
+                </article>
+
+                <article class="item">
+                    <img src="" alt="">
+                    <p> item 3</p>
+                </article>
+            </div>
+        </div>
+
+        
+        <div class="collection-category">
+            <h3>Badkamer</h3>
+            <div class="category-items">
+                <article class="item">
+                    <img src="" alt="">
+                    <p>item 1</p>
+                </article>
+
+                <article class="item">
+                    <img src="" alt="">
+                    <p>item 2</p>
+                </article>
+
+                <article class="item">
+                    <img src="" alt="">
+                    <p>item 3</p>
+                </article>
+            </div>
+        </div>
+
+    </section>
+
+</main>
+    
 </body>
 </html>
