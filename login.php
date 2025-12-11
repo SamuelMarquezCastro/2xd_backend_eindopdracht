@@ -12,7 +12,7 @@
         </div>
         <h2>Inloggen</h2>
 
-        <form action="login-process.php" method="POST" class="login-form">
+        <form method="POST" class="login-form">
             <label for="email">Email of gebruikersnaam</label>
             <input type="text" id="email" name="email" required>
 
