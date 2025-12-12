@@ -19,7 +19,7 @@
             <ul>
                 <li><a href="#">Search</a></li>
                 <li><a href="#">Collectie</a></li>
-                <li><a href="#">Login</a></li>
+                <li><a href="login.php">Login</a></li>
                 <li><a href="#">Help</a></li>
                 <li><a href="#">Winkelmand</a></li>
             </ul>

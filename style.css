@@ -1,0 +1,191 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Verdana', 'Segoe UI', sans-serif;
+    background-color: #f7f5f2;
+    color:  #000000;
+}
+
+img {
+    max-width: 100%;
+    display: block;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+    background-color: #ffffff;
+    border-bottom: 1px solid #dddddd;
+}
+
+.logo img {
+    height: 2.8rem;
+}
+
+.nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    gap: 1.5rem;
+}
+
+.nav a {
+    text-decoration: none;
+    color: #333333;
+    font-weight: 500;
+    font-size: 0.95rem;
+    font-family: 'Verdana', 'Segoe UI', sans-serif;
+}
+
+.nav a:hover {
+    opacity: 0.6;
+}
+
+.hero {
+    height: 100vh;
+    background-image: url("img/background.jpg");
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.hero-inner {
+    text-align: center;
+    background-color: rgba(255, 255, 255, 0.75);
+    padding: 1.5rem 2.5rem;
+    border-radius: 0.25rem;
+}
+
+.hero-inner h2 {
+    font-family: 'Verdana', 'Segoe UI', sans-serif;
+    font-size: 2rem;
+    letter-spacing: 0.08em;
+    margin-bottom: 1rem;
+}
+
+.hero-inner button {
+    padding: 0.75rem 1.5rem;
+    border: none;
+    background-color: #000000;
+    color: #ffffff;
+    cursor: pointer;
+    font-size: 0.95rem;
+    font-family: 'Verdana', 'Segoe UI', sans-serif;
+}
+
+.hero-inner button:hover {
+    opacity: 0.75;
+}
+
+.collection {
+    padding: 2.5rem 1.5rem;
+    max-width: 80rem;
+    margin: 0 auto;
+}
+
+.collection h2 {
+    text-align: center;
+    margin-bottom: 2rem;
+    font-size: 1.75rem;
+    font-family: 'Verdana', 'Segoe UI', sans-serif;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+.collection-category {
+    margin-bottom: 2.5rem;
+}
+
+.collection-category h3 {
+    font-size: 1.25rem;
+    margin-bottom: 0.75rem;
+    font-family: 'Verdana', 'Segoe UI', sans-serif;
+    text-align: center;
+}
+
+.category-items {
+    display: flex;
+    gap: 4.25rem;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.item {
+    background-color: #ffffff;
+    padding: 1.75rem;
+    border: 1px solid #dddddd;
+    width: 9.5rem;
+    text-align: center;
+    font-family: 'Verdana', 'Segoe UI', sans-serif;
+}
+
+.item p {
+    margin-top: 0.5rem;
+    font-size: 0.85rem;
+}
+
+
+.login-page,
+.register-page {
+    width: 90%;
+    max-width: 25rem;
+    margin: 3.5rem auto;
+    padding: 1.5rem;
+    background-color: #ffffff;
+    border: 1px solid #dddddd;
+    font-family: 'Verdana', 'Segoe UI', sans-serif;
+}
+
+
+.login-form,
+.register-form {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+
+.login-form input,
+.register-form input {
+    padding: 0.6rem;
+    border: 1px solid #bbbbbb;
+    font-size: 0.95rem;
+    font-family: 'Verdana', 'Segoe UI', sans-serif;
+}
+
+button {
+    padding: 0.75rem;
+    border: none;
+    background-color:  #000000;
+    color: #ffffff;
+    cursor: pointer;
+    font-size: 0.95rem;
+    font-family: 'Verdana', 'Segoe UI', sans-serif;
+}
+
+button:hover {
+    opacity: 0.75;
+}
+
+.logo-login img,
+.logo-register img {
+    display: block;
+    margin: 0 auto 1.25rem auto;
+    height: 3.5rem;
+}
+
+p a {
+    color:  #000000;
+    font-weight: 500;
+    text-decoration: none;
+    font-family: 'Verdana', 'Segoe UI', sans-serif;
+}
+
+p a:hover {
+    opacity: 0.75;
+}
