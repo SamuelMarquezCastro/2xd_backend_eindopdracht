@@ -1,3 +1,27 @@
+<?php
+if(!empty($_POST)){
+    $username = $_POST['username'];
+    $email = $_POST['email'];
+    $password = password_hash($_POST['password'],PASSWORD_DEFAULT, $options);
+
+    $options = [
+        'cost' =>14,
+    ];
+
+$conn = new mysqli("localhost", "root","", "");
+$result = $conn-> query("insert into users (username, email, password) values ('".$conn->real_escape_string($username)."',".$conn->real_escape_string($email)."',".$conn->real_escape_string($password)."')");
+if($result === true ){
+    //session
+    
+}
+}
+
+
+?>
+
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
