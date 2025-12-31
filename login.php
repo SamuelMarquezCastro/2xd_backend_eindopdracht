@@ -1,3 +1,30 @@
+<?php
+
+function canLogin($email,$password){
+
+}
+
+
+if (!empty($_POST)) {
+    
+    $email = $_POST['email'];
+    $password = $_POST['password'];
+
+    if (canLogin($email, $password)) {
+     
+        session_start();
+        $_SESSION["email"] = $email;
+        header ("Location: index.php");
+    } else {
+       
+        $error = true;
+    }
+}
+
+
+
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
