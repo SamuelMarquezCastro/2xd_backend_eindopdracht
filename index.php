@@ -2,11 +2,29 @@
 session_start();
 
 if (isset($_SESSION['email'])) {
-   
 } else {
     header("Location: login.php");
-    
 }
+
+$conn = new mysqli("localhost", "root", "", "");
+
+$categories = [
+    "Slaapkamer" => [],
+    "Woonkamer" => [],
+    "Keuken & eetkamer" => [],
+    "Badkamer" => []
+];
+
+$result = $conn->query("SELECT id, title, category, image FROM products ORDER BY id DESC");
+
+if ($result) {
+    while ($row = $result->fetch_assoc()) {
+        if (isset($categories[$row['category']])) {
+            $categories[$row['category']][] = $row;
+        }
+    }
+}
+
 ?>
 
 
@@ -58,113 +76,59 @@ if (isset($_SESSION['email'])) {
 
 
                 <div class="category-items">
-                    <article class="item">
-                        <a href="product.php">
-                            <img src="img/placeholder.png" alt="">
-                            <p>item 1</p>
-                        </a>
-                    </article>
-
-                    <article class="item">
-                        <a href="product.php">
-                            <img src="img/placeholder.png" alt="">
-                            <p>item 2</p>
-                        </a>
-                    </article>
-
-                    <article class="item">
-                        <a href="product.php">
-                            <img src="img/placeholder.png" alt="">
-                            <p>item 3</p>
-                        </a>
-                    </article>
+                    <?php foreach ($categories["Slaapkamer"] as $product): ?>
+                        <article class="item">
+                            <a href="product.php?id=<?php echo $product['id']; ?>">
+                                <img src="img/<?php echo htmlspecialchars($product['image']); ?>" alt="">
+                                <p><?php echo htmlspecialchars($product['title']); ?></p>
+                            </a>
+                        </article>
+                    <?php endforeach; ?>
                 </div>
-            </div>
 
 
-            <div class="collection-category">
-                <h3>Woonkamer</h3>
 
-                <div class="category-items">
-                    <article class="item">
-                        <a href="product.php">
-                            <img src="img/placeholder.png" alt="">
-                            <p>item 1</p>
-                        </a>
-                    </article>
+                <div class="collection-category">
+                    <h3>Woonkamer</h3>
 
-                    <article class="item">
-                        <a href="product.php">
-                            <img src="img/placeholder.png" alt="">
-                            <p>item 2</p>
-                        </a>
-                    </article>
-
-                    <article class="item">
-                        <a href="product.php">
-                            <img src="img/placeholder.png" alt="">
-                            <p>item 3</p>
-                        </a>
-                    </article>
-                    </article>
-                </div>
-            </div>
+                    <div class="category-items">
+                        <?php foreach ($categories["Woonkamer"] as $product): ?>
+                            <article class="item">
+                                <a href="product.php?id=<?php echo $product['id']; ?>">
+                                    <img src="img/<?php echo htmlspecialchars($product['image']); ?>" alt="">
+                                    <p><?php echo htmlspecialchars($product['title']); ?></p>
+                                </a>
+                            </article>
+                        <?php endforeach; ?>
+                    </div>
 
 
-            <div class="collection-category">
-                <h3>Keuken & eetkamer</h3>
+                    <div class="collection-category">
+                        <h3>Keuken & eetkamer</h3>
+
+                        <div class="category-items">
+                            <?php foreach ($categories["Keuken & eetkamer"] as $product): ?>
+                                <article class="item">
+                                    <a href="product.php?id=<?php echo $product['id']; ?>">
+                                        <img src="img/<?php echo htmlspecialchars($product['image']); ?>" alt="">
+                                        <p><?php echo htmlspecialchars($product['title']); ?></p>
+                                    </a>
+                                </article>
+                            <?php endforeach; ?>
+                        </div>
 
 
-                <div class="category-items">
-                    <article class="item">
-                        <a href="product.php">
-                            <img src="img/placeholder.png" alt="">
-                            <p>item 1</p>
-                        </a>
-                    </article>
+                        <div class="category-items">
+                            <?php foreach ($categories["Badkamer"] as $product): ?>
+                                <article class="item">
+                                    <a href="product.php?id=<?php echo $product['id']; ?>">
+                                        <img src="img/<?php echo htmlspecialchars($product['image']); ?>" alt="">
+                                        <p><?php echo htmlspecialchars($product['title']); ?></p>
+                                    </a>
+                                </article>
+                            <?php endforeach; ?>
+                        </div>
 
-                    <article class="item">
-                        <a href="product.php">
-                            <img src="img/placeholder.png" alt="">
-                            <p>item 2</p>
-                        </a>
-                    </article>
-
-                    <article class="item">
-                        <a href="product.php">
-                            <img src="img/placeholder.png" alt="">
-                            <p>item 3</p>
-                        </a>
-                    </article>
-                </div>
-            </div>
-
-
-            <div class="collection-category">
-                <h3>Badkamer</h3>
-                <div class="category-items">
-                    <article class="item">
-                        <a href="product.php">
-                            <img src="img/placeholder.png" alt="">
-                            <p>item 1</p>
-                        </a>
-                    </article>
-
-                    <article class="item">
-                        <a href="product.php">
-                            <img src="img/placeholder.png" alt="">
-                            <p>item 2</p>
-                        </a>
-                    </article>
-
-                    <article class="item">
-                        <a href="product.php">
-                            <img src="img/placeholder.png" alt="">
-                            <p>item 3</p>
-                        </a>
-                    </article>
-                </div>
-            </div>
 
         </section>
 
