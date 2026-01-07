@@ -1,6 +1,24 @@
 <?php
 
 function canLogin($email,$password){
+    $conn = new PDO('mysql:host=localhost;dbname=Zara', "root", "");
+    $statement = $conn->prepare("select * from users where email = :email");
+    $statement->bindValue(":email", $email);
+    $statement->execute();
+
+    $user = $statement->fetch();
+
+    if (!$user) {
+        return false;
+    }
+
+    $hash = $user["password"];
+
+    if (password_verify($password, $hash)) {
+        return true;
+    } else {
+        return false;
+    }
 
 }
 
@@ -13,7 +31,7 @@ if (!empty($_POST)) {
     if (canLogin($email, $password)) {
      
         session_start();
-        $_SESSION["email"] = $email;
+        $_SESSION["email"] = $email; 
         header ("Location: index.php");
     } else {
        

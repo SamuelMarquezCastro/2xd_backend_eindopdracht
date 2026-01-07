@@ -1,38 +1,43 @@
 <?php
-if(!empty($_POST)){
+if (!empty($_POST)) {
     $username = $_POST['username'];
     $email = $_POST['email'];
-    $password = password_hash($_POST['password'],PASSWORD_DEFAULT, $options);
 
     $options = [
-        'cost' =>14,
+        'cost' => 14
     ];
 
-$conn = new mysqli("localhost", "root","", "");
-$result = $conn-> query("insert into users (username, email, password) values ('".$conn->real_escape_string($username)."',".$conn->real_escape_string($email)."',".$conn->real_escape_string($password)."')");
-if($result === true ){
-    //session
-    
-}
-}
+    $password = password_hash($_POST['password'], PASSWORD_DEFAULT, $options);
 
+    $conn = new PDO('mysql:host=localhost;dbname=Zara', 'root', '');
 
+    $query = $conn->prepare("insert into users (username, email, password) values (:username, :email, :password)");
+
+    $query->bindValue(":username", $username);
+    $query->bindValue(":email", $email);
+    $query->bindValue(":password", $password);
+
+    $query->execute();
+}
 ?>
+
 
 
 
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Register</title>
     <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
-<main class="register-page">
-<div class="logo-register">
+    <main class="register-page">
+        <div class="logo-register">
             <img src="img/Zara_Home_logo_2023.png" alt="Zara Home logo">
         </div>
         <h2>Account aanmaken</h2>
@@ -56,4 +61,5 @@ if($result === true ){
         <p>Heb je al een account? <a href="login.php">Inloggen</a></p>
     </main>
 </body>
+
 </html>
