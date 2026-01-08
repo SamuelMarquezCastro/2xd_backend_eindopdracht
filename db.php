@@ -2,11 +2,25 @@
 
 function getPDO(): PDO
 {
-    $host = getenv('MYSQLHOST') ?: 'localhost';
-    $port = getenv('MYSQLPORT') ?: '3306';
-    $db   = getenv('MYSQLDATABASE') ?: 'Zara';
-    $user = getenv('MYSQLUSER') ?: 'root';
-    $pass = getenv('MYSQLPASSWORD') ?: '';
+    // Railway env (bestaat op InfinityFree meestal NIET)
+    $host = getenv('MYSQLHOST');
+    $port = getenv('MYSQLPORT');
+    $db   = getenv('MYSQLDATABASE');
+    $user = getenv('MYSQLUSER');
+    $pass = getenv('MYSQLPASSWORD');
+
+    
+    if (!$host || !$db || !$user) {
+
+    
+        $host = "sql211.infinityfree.com";
+        $port = "3306";
+        $db   = "if0_40857781_zara";   
+        $user = "if0_40857781";
+        $pass = "wzJC4ILt8aXk";
+
+    
+    }
 
     $dsn = "mysql:host={$host};port={$port};dbname={$db};charset=utf8mb4";
 
