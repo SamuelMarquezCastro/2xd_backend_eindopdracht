@@ -1,3 +1,27 @@
+<?php
+session_start();
+
+if (!isset($_GET['id'])) {
+    header("Location: index.php");
+    exit;
+}
+
+$id = (int) $_GET['id'];
+
+$conn = new PDO('mysql:host=localhost;dbname=Zara', 'root', '');
+
+$statement = $conn->prepare("SELECT id, title, category, image, description, price FROM products WHERE id = :id LIMIT 1");
+$statement->bindValue(":id", $id);
+$statement->execute();
+
+$product = $statement->fetch();
+
+if (!$product) {
+    header("Location: index.php");
+    exit;
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -29,32 +53,32 @@
 
     <main>
 
-        <section class="product-page">
+    <section class="product-page">
 
-            <div class="product-image">
-                <img src="img/placeholder.png" alt="">
-            </div>
+<div class="product-image">
+    <img src="img/<?php echo htmlspecialchars($product['image']); ?>" alt="">
+</div>
 
-            <div class="product-info">
-                <p class="product-category">Slaapkamer</p>
-                <h1 class="product-title">Kersthart dienblad</h1>
-                <p class="product-price">€45,99</p>
+<div class="product-info">
+    <p class="product-category"><?php echo htmlspecialchars($product['category']); ?></p>
+    <h1 class="product-title"><?php echo htmlspecialchars($product['title']); ?></h1>
+    <p class="product-price">€<?php echo number_format((float)$product['price'], 2, ',', '.'); ?></p>
 
-                <p class="product-description">
-                    Kersthart dienblad voor in de slaapkamer
-                </p>
-                <form class="product-form" method="POST" action="addcart.php">
-                    <input type="hidden" name="product_id" value="1">
+    <p class="product-description">
+        <?php echo htmlspecialchars($product['description']); ?>
+    </p>
 
-                    <label for="quantity">Aantal</label>
-                    <input type="number" name="quantity" value="1" min="1">
+    <form class="product-form" method="POST" action="addcart.php">
+        <input type="hidden" name="product_id" value="<?php echo (int)$product['id']; ?>">
 
-                    <button type="submit">In winkelmand</button>
-                </form>
+        <label for="quantity">Aantal</label>
+        <input type="number" id="quantity" name="quantity" value="1" min="1">
 
-            </div>
+        <button type="submit">In winkelmand</button>
+    </form>
+</div>
 
-        </section>
+</section>
 
     </main>
 
