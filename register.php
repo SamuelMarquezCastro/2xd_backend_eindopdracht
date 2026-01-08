@@ -1,25 +1,42 @@
 <?php
+$error = "";
+$success = "";
+
 if (!empty($_POST)) {
-    $username = $_POST['username'];
-    $email = $_POST['email'];
+    $username = trim($_POST['username']);
+    $email = trim($_POST['email']);
+    $passwordRaw = $_POST['password'];
+    $confirm = $_POST['confirm_password'];
 
-    $options = [
-        'cost' => 14
-    ];
+    if ($passwordRaw !== $confirm) {
+        $error = "Wachtwoorden komen niet overeen.";
+    } else {
+        $options = ['cost' => 14];
+        $password = password_hash($passwordRaw, PASSWORD_DEFAULT, $options);
 
-    $password = password_hash($_POST['password'], PASSWORD_DEFAULT, $options);
+        $conn = new PDO('mysql:host=localhost;dbname=Zara', 'root', '');
 
-    $conn = new PDO('mysql:host=localhost;dbname=Zara', 'root', '');
 
-    $query = $conn->prepare("insert into users (username, email, password) values (:username, :email, :password)");
+        $check = $conn->prepare("select id from users where email = :email");
+        $check->bindValue(":email", $email);
+        $check->execute();
 
-    $query->bindValue(":username", $username);
-    $query->bindValue(":email", $email);
-    $query->bindValue(":password", $password);
+        if ($check->fetch()) {
+            $error = "Dit emailadres is al geregistreerd.";
+        } else {
 
-    $query->execute();
+            $query = $conn->prepare("insert into users (username, email, password) values (:username, :email, :password)");
+            $query->bindValue(":username", $username);
+            $query->bindValue(":email", $email);
+            $query->bindValue(":password", $password);
+            $query->execute();
+
+            $success = "Account aangemaakt. Je kan nu inloggen.";
+        }
+    }
 }
 ?>
+
 
 
 
@@ -43,6 +60,14 @@ if (!empty($_POST)) {
         <h2>Account aanmaken</h2>
 
         <form method="POST" class="register-form">
+            <?php if ($error): ?>
+                <p style="color:red;"><?php echo $error; ?></p>
+            <?php endif; ?>
+
+            <?php if ($success): ?>
+                <p style="color:green;"><?php echo $success; ?></p>
+            <?php endif; ?>
+
             <label for="username">Gebruikersnaam</label>
             <input type="text" id="username" name="username" required>
 

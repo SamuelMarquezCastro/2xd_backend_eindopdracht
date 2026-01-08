@@ -1,11 +1,9 @@
 <?php
 session_start();
 
-if (isset($_SESSION['email'])) {
-   
-} else {
+if (!isset($_SESSION['email'])) {
     header("Location: login.php");
-    
+    exit;
 }
 
 $conn = new mysqli("localhost", "root", "", "Zara");
@@ -56,8 +54,13 @@ if ($result) {
             <ul>
                 <li><a href="#">Search</a></li>
                 <li><a href="#">Collectie</a></li>
+                <?php if (isset($_SESSION['email'])): ?>
+                <li><a href="changepassword.php">Wachtwoord wijzigen</a></li>
+                <li><a href="logout.php">Logout</a></li>
+            <?php else: ?>
                 <li><a href="login.php">Login</a></li>
-                <li><a href="#">Help</a></li>
+            <?php endif; ?>
+
                 <li><a href="shoppingcart.php">Winkelmand</a></li>
             </ul>
         </nav>
