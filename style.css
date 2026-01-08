@@ -244,3 +244,44 @@ p a:hover {
 }
 
 
+.cart-page {
+    max-width: 80rem;
+    margin: 3rem auto;
+    padding: 0 2rem;
+}
+
+.cart-page h2 {
+    text-align: center;
+    margin-bottom: 2rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    font-size: 1.5rem;
+}
+
+.cart-item {
+    display: flex;
+    gap: 1.5rem;
+    align-items: center;
+    background: #ffffff;
+    border: 1px solid #dddddd;
+    padding: 1rem;
+    margin-bottom: 1rem;
+}
+
+.cart-item img {
+    width: 6rem;
+    border: 1px solid #dddddd;
+}
+
+.cart-info {
+    flex: 1;
+}
+
+.cart-summary {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 2rem;
+    padding-top: 1rem;
+    border-top: 1px solid #dddddd;
+}

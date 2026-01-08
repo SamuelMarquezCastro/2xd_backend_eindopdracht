@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,6 +8,7 @@
     <link rel="stylesheet" href="style.css">
 
 </head>
+
 <body>
 
     <header class="header">
@@ -39,22 +41,17 @@
                 <p class="product-price">€45,99</p>
 
                 <p class="product-description">
-                Kersthart dienblad voor in de slaapkamer
+                    Kersthart dienblad voor in de slaapkamer
                 </p>
-
-                <form class="product-form" method="POST">
-                    <label for="size">Kies Kleur</label>
-                    <select id="size" name="size">
-                        <option value="Rood">Rood</option>
-                        <option value="Blauw">Blauw</option>
-                        <option value="Groen">Groen</option>
-                    </select>
+                <form class="product-form" method="POST" action="addcart.php">
+                    <input type="hidden" name="product_id" value="1">
 
                     <label for="quantity">Aantal</label>
-                    <input type="number" id="quantity" name="quantity" value="1" min="1">
+                    <input type="number" name="quantity" value="1" min="1">
 
                     <button type="submit">In winkelmand</button>
                 </form>
+
             </div>
 
         </section>
@@ -62,4 +59,5 @@
     </main>
 
 </body>
+
 </html>
