@@ -1,4 +1,6 @@
 <?php
+require_once __DIR__ . "/db.php";
+
 $error = "";
 $success = "";
 
@@ -14,18 +16,16 @@ if (!empty($_POST)) {
         $options = ['cost' => 14];
         $password = password_hash($passwordRaw, PASSWORD_DEFAULT, $options);
 
-        $conn = new PDO('mysql:host=localhost;dbname=Zara', 'root', '');
+        $conn = getPDO();
 
-
-        $check = $conn->prepare("select id from users where email = :email");
+        $check = $conn->prepare("SELECT id FROM users WHERE email = :email");
         $check->bindValue(":email", $email);
         $check->execute();
 
         if ($check->fetch()) {
             $error = "Dit emailadres is al geregistreerd.";
         } else {
-
-            $query = $conn->prepare("insert into users (username, email, password) values (:username, :email, :password)");
+            $query = $conn->prepare("INSERT INTO users (username, email, password) VALUES (:username, :email, :password)");
             $query->bindValue(":username", $username);
             $query->bindValue(":email", $email);
             $query->bindValue(":password", $password);
@@ -36,6 +36,7 @@ if (!empty($_POST)) {
     }
 }
 ?>
+
 
 
 
@@ -61,12 +62,13 @@ if (!empty($_POST)) {
 
         <form method="POST" class="register-form">
             <?php if ($error): ?>
-                <p style="color:red;"><?php echo $error; ?></p>
+                <p style="color:red;"><?php echo htmlspecialchars($error); ?></p>
             <?php endif; ?>
 
             <?php if ($success): ?>
-                <p style="color:green;"><?php echo $success; ?></p>
+                <p style="color:green;"><?php echo htmlspecialchars($success); ?></p>
             <?php endif; ?>
+
 
             <label for="username">Gebruikersnaam</label>
             <input type="text" id="username" name="username" required>

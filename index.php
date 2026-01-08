@@ -6,7 +6,10 @@ if (!isset($_SESSION['email'])) {
     exit;
 }
 
-$conn = new mysqli("localhost", "root", "", "Zara");
+require_once "db.php";
+$conn = getPDO();
+
+
 
 
 $categories = [
@@ -18,11 +21,12 @@ $categories = [
 
 $result = $conn->query("SELECT id, title, category, image FROM products ORDER BY id DESC");
 
-if ($result) {
-    while ($row = $result->fetch_assoc()) {
-        if (isset($categories[$row['category']])) {
-            $categories[$row['category']][] = $row;
-        }
+$statement = $conn->query("SELECT id, title, category, image FROM products ORDER BY id DESC");
+$rows = $statement->fetchAll();
+
+foreach ($rows as $row) {
+    if (isset($categories[$row['category']])) {
+        $categories[$row['category']][] = $row;
     }
 }
 

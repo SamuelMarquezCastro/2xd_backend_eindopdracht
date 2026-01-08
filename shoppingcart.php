@@ -1,9 +1,11 @@
 <?php
 session_start();
 
+require_once __DIR__ . "/db.php";
+
 $cart = $_SESSION['cart'] ?? [];
 
-$conn = new PDO('mysql:host=localhost;dbname=Zara', 'root', '');
+$conn = getPDO();
 
 $products = [];
 $total = 0;
@@ -17,7 +19,7 @@ if (!empty($cart)) {
     );
     $statement->execute($ids);
 
-    while ($row = $statement->fetch(PDO::FETCH_ASSOC)) {
+    while ($row = $statement->fetch()) {
         $products[$row['id']] = $row;
     }
 
@@ -27,8 +29,8 @@ if (!empty($cart)) {
         }
     }
 }
-
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>

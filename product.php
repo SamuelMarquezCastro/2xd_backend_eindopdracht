@@ -8,18 +8,20 @@ if (!isset($_GET['id'])) {
 
 $id = (int) $_GET['id'];
 
-$conn = new PDO('mysql:host=localhost;dbname=Zara', 'root', '');
+require_once __DIR__ . "/db.php";
+$conn = getPDO();
 
-$statement = $conn->prepare("SELECT id, title, category, image, description, price FROM products WHERE id = :id LIMIT 1");
+$id = isset($_GET['id']) ? (int)$_GET['id'] : 0;
+
+$statement = $conn->prepare("SELECT * FROM products WHERE id = :id");
 $statement->bindValue(":id", $id);
 $statement->execute();
-
 $product = $statement->fetch();
 
 if (!$product) {
-    header("Location: index.php");
-    exit;
+    die("Product niet gevonden");
 }
+
 ?>
 
 <!DOCTYPE html>

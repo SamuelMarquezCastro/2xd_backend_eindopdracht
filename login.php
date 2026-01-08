@@ -2,12 +2,14 @@
 
 function canLogin($email, $password)
 {
-    $conn = new PDO('mysql:host=localhost;dbname=Zara', "root", "");
-    $statement = $conn->prepare("select * from users where email = :email");
-    $statement->bindValue(":email", $email);
-    $statement->execute();
+    require_once __DIR__ . "/db.php";
+$conn = getPDO();
 
-    $user = $statement->fetch();
+$statement = $conn->prepare("SELECT * FROM users WHERE email = :email");
+$statement->bindValue(":email", $email);
+$statement->execute();
+$user = $statement->fetch();
+
 
     if (!$user) {
         return false;
