@@ -46,7 +46,7 @@ if (!$product) {
                 <li><a href="index.php">Collectie</a></li>
                 <li><a href="login.php">Login</a></li>
                 <li><a href="#">Help</a></li>
-                <li><a href="#">Winkelmand</a></li>
+                <li><a href="shoppingcart.php">Winkelmand</a></li>
             </ul>
         </nav>
     </header>
